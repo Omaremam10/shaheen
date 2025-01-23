@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Manage Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 1em;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .product-list {
+            margin-top: 40px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-item h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .product-item p {
+            margin: 5px 0;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #f5c518;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e0b913;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard - Manage Products</h1>
+
+        <form id="product-form">
+            <input type="text" id="product-name" placeholder="Product Name" required>
+            <textarea id="product-description" placeholder="Product Description" required></textarea>
+            <select id="product-category" required>
+                <option value="">Select Category</option>
+                <option value="electrical">Electrical</option>
+                <option value="wood">Wood</option>
+            </select>
+            <input type="text" id="product-image" placeholder="Image URL (e.g., Imgur link)" required>
+            <button type="submit" class="btn">Add Product</button>
+        </form>
+
+        <div class="product-list" id="product-list">
+            <!-- Dynamic product items will be displayed here -->
+        </div>
+    </div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA5LCQf4Ike69o5lRoVVuhYllV0-FT1YAc",
+    authDomain: "shaheenfalcon-b2ea2.firebaseapp.com",
+    projectId: "shaheenfalcon-b2ea2",
+    storageBucket: "shaheenfalcon-b2ea2.firebasestorage.app",
+    messagingSenderId: "823963121655",
+    appId: "1:823963121655:web:cc6d1745a7ac0b517320f2",
+    measurementId: "G-KGEGEPVWHB"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // Redirect if not logged in
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      alert("You must be logged in!");
+      window.location.href = "index.html";
+    }
+  });
+
+  // Reference to product collection
+  const productCollection = collection(db, "products");
+
+// Load products from Firestore
+async function loadProducts() {
+  const querySnapshot = await getDocs(productCollection);
+  const productList = document.getElementById("product-list");
+  productList.innerHTML = ""; // Clear the current product list
+
+  querySnapshot.forEach(doc => {
+    const product = doc.data();
+    const productId = doc.id; // Firestore's document ID
+
+    const productItem = document.createElement("div");
+    productItem.classList.add("product-item");
+    productItem.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <p>Category: ${product.category}</p>
+      <a class="btn" href="product.html?id=${productId}">View Details</a>
+      <div class="actions">
+        <button class="btn" onclick="editProduct('${productId}')">Edit</button>
+        <button class="btn-delete" onclick="deleteProduct('${productId}')">Delete</button>
+      </div>
+    `;
+
+    productList.appendChild(productItem);
+  });
+}
+
+  // Add product to Firestore
+  document.getElementById("product-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("product-name").value;
+    const description = document.getElementById("product-description").value;
+    const category = document.getElementById("product-category").value;
+    const image = document.getElementById("product-image").value;
+
+    try {
+      await addDoc(productCollection, { name, description, category, image });
+      alert("Product added successfully!");
+      loadProducts();
+    } catch (err) {
+      alert("Error adding product: " + err.message);
+    }
+  });
+
+ // Delete product from Firestore
+async function deleteProduct(id) {
+  try {
+    await deleteDoc(doc(productCollection, id));
+    alert("Product deleted successfully!");
+    loadProducts();
+  } catch (err) {
+    alert("Error deleting product: " + err.message);
+  }
+}
+
+// Attach deleteProduct to the window object
+window.deleteProduct = deleteProduct;
+
+
+// Load products on page load
+  loadProducts();
+</script>
+
+</body>
+</html>

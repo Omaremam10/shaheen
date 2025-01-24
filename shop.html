@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Electrical Products</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin: 20px auto;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-item h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .product-item p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-dark text-light py-3">
+        <div class="container">
+            <h1>Electrical Products</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="product-list" id="product-list">
+            <!-- Dynamic product items will appear here -->
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5LCQf4Ike69o5lRoVVuhYllV0-FT1YAc",
+            authDomain: "shaheenfalcon-b2ea2.firebaseapp.com",
+            projectId: "shaheenfalcon-b2ea2",
+            storageBucket: "shaheenfalcon-b2ea2.firebasestorage.app",
+            messagingSenderId: "823963121655",
+            appId: "1:823963121655:web:cc6d1745a7ac0b517320f2",
+            measurementId: "G-KGEGEPVWHB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadElectricalProducts() {
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = "Loading products...";
+
+            const q = query(collection(db, "products"), where("category", "==", "electrical"));
+            const querySnapshot = await getDocs(q);
+
+            const products = [];
+            querySnapshot.forEach(doc => {
+                products.push({ id: doc.id, ...doc.data() });
+            });
+
+            if (products.length === 0) {
+                productList.innerHTML = "<p>No electrical products available.</p>";
+                return;
+            }
+
+            productList.innerHTML = "";
+            products.forEach(product => {
+                const productItem = document.createElement("div");
+                productItem.className = "product-item";
+                productItem.innerHTML = `
+                    <img src="${product.image || 'placeholder.jpg'}" alt="${product.name || 'Product'}">
+                    <h3>${product.name || 'Unnamed Product'}</h3>
+                    <p>${product.description || 'No description available.'}</p>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+
+        loadElectricalProducts();
+    </script>
+</body>
+
+</html>

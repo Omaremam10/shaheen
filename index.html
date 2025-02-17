@@ -120,76 +120,106 @@
 
 
     <!-- Start Banner Hero -->
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_01.png" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Shaheen</b> Falcon</h1>
-                                <h3 class="h2">Best Wooden and Electric products Ever</h3>
-                                <p>
-                                   Shaheen Falcon in Rwanda
-                                </p>
-                            </div>
-                        </div>
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <!-- Indicators dynamically generated -->
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="4"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="5"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="6"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="7"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="8"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="9"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="10"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="11"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="12"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="13"></li>
+    </ol>
+    <div class="carousel-inner">
+        <!-- Wooden Products Slides -->
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="./assets/img/wood1.jpg" alt="">
                     </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_02.jpg" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Wooden Products</h1>
-                                <h3 class="h2">Shop best wooden products at shaheen falcon</h3>
-                                <p>
-                                    best wooden products ever highest quality
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="./assets/img/banner_img_03.jpg" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Electrical Products</h1>
-                                <h3 class="h2">Electronics</h3>
-                                <p>
-                                   Enjoy Shoppong highest quality in Rwanda
-                                </p>
-                            </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1">Wooden Product 1</h1>
+                            <h3 class="h2">Elegant Wooden Furniture</h3>
+                            <p>
+                                Discover high-quality wooden furniture with unique designs.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-            <i class="fas fa-chevron-left"></i>
-        </a>
-        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-            <i class="fas fa-chevron-right"></i>
-        </a>
+        
+        <!-- More Wooden Product Slides -->
+        <script>
+        for (let i = 2; i <= 7; i++) {
+            document.write(`
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row p-5">
+                            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                <img class="img-fluid" src="./assets/img/wood${i}.jpg" alt="">
+                            </div>
+                            <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                <div class="text-align-left">
+                                    <h1 class="h1">Wooden Product ${i}</h1>
+                                    <h3 class="h2">High-Quality Wooden Craft</h3>
+                                    <p>
+                                        Beautifully crafted wooden items for all your needs.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+        </script>
+        
+        <!-- Electrical Products Slides -->
+        <script>
+        for (let i = 1; i <= 7; i++) {
+            document.write(`
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row p-5">
+                            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                <img class="img-fluid" src="./assets/img/elec${i}.jpg" alt="">
+                            </div>
+                            <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                <div class="text-align-left">
+                                    <h1 class="h1">Electrical Product ${i}</h1>
+                                    <h3 class="h2">Advanced Electronic Devices</h3>
+                                    <p>
+                                        Experience top-quality electronics with cutting-edge technology.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+        </script>
     </div>
-    <!-- End Banner Hero -->
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+</div>
+<!-- End Banner Hero -->
+
 
 
     <!-- Start Categories of The Month -->

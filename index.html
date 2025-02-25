@@ -119,7 +119,7 @@
 
 
 
-    <!-- Start Banner Hero -->
+   <!-- Start Banner Hero -->
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
         <!-- Indicators dynamically generated -->
@@ -148,10 +148,11 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">Wooden Product 1</h1>
-                            <h3 class="h2">Elegant Wooden Furniture</h3>
+                            <h1 class="h1">Star Chair Outdoor Dining Set</h1>
+                            <h3 class="h2">Stylish & Durable</h3>
                             <p>
-                                Discover high-quality wooden furniture with unique designs.
+                                This elegant dining set features four Star Chairs and a matching square table, crafted from high-quality rattan-style material. 
+                                Perfect for indoor and outdoor use, it offers durability, comfort, and a modern touch. Ideal for patios, gardens, and cafes.
                             </p>
                         </div>
                     </div>
@@ -161,6 +162,15 @@
         
         <!-- More Wooden Product Slides -->
         <script>
+        const woodenProducts = [
+            { title: "Rustic Wooden Table", description: "A beautifully crafted rustic wooden table, perfect for your dining room or kitchen." },
+            { title: "Handcrafted Wooden Shelf", description: "A sturdy and stylish wooden shelf, ideal for displaying your favorite books and decor." },
+            { title: "Wooden Bed Frame", description: "A luxurious wooden bed frame that combines elegance and comfort for a restful sleep." },
+            { title: "Wooden Coffee Table", description: "A chic wooden coffee table, perfect for your living room." },
+            { title: "Wooden Bench", description: "A versatile wooden bench, great for indoor or outdoor use." },
+            { title: "Wooden Cabinet", description: "A spacious wooden cabinet, perfect for storage and organization." }
+        ];
+
         for (let i = 2; i <= 7; i++) {
             document.write(`
                 <div class="carousel-item">
@@ -171,11 +181,9 @@
                             </div>
                             <div class="col-lg-6 mb-0 d-flex align-items-center">
                                 <div class="text-align-left">
-                                    <h1 class="h1">Wooden Product ${i}</h1>
+                                    <h1 class="h1">${woodenProducts[i - 2].title}</h1>
                                     <h3 class="h2">High-Quality Wooden Craft</h3>
-                                    <p>
-                                        Beautifully crafted wooden items for all your needs.
-                                    </p>
+                                    <p>${woodenProducts[i - 2].description}</p>
                                 </div>
                             </div>
                         </div>
@@ -187,6 +195,16 @@
         
         <!-- Electrical Products Slides -->
         <script>
+        const electricalProducts = [
+            { title: "Smart LED TV", description: "Experience stunning visuals with our Smart LED TV, featuring 4K resolution and smart connectivity." },
+            { title: "Wireless Bluetooth Speaker", description: "Enjoy high-quality sound with our portable wireless Bluetooth speaker." },
+            { title: "Robot Vacuum Cleaner", description: "Keep your home clean effortlessly with our smart robot vacuum cleaner." },
+            { title: "Air Purifier", description: "Breathe cleaner air with our advanced air purifier, perfect for homes and offices." },
+            { title: "Smart Thermostat", description: "Control your home's temperature with our energy-efficient smart thermostat." },
+            { title: "Electric Kettle", description: "Boil water quickly and safely with our stylish electric kettle." },
+            { title: "Blender", description: "Create delicious smoothies and soups with our powerful blender." }
+        ];
+
         for (let i = 1; i <= 7; i++) {
             document.write(`
                 <div class="carousel-item">
@@ -197,11 +215,9 @@
                             </div>
                             <div class="col-lg-6 mb-0 d-flex align-items-center">
                                 <div class="text-align-left">
-                                    <h1 class="h1">Electrical Product ${i}</h1>
+                                    <h1 class="h1">${electricalProducts[i - 1].title}</h1>
                                     <h3 class="h2">Advanced Electronic Devices</h3>
-                                    <p>
-                                        Experience top-quality electronics with cutting-edge technology.
-                                    </p>
+                                    <p>${electricalProducts[i - 1].description}</p>
                                 </div>
                             </div>
                         </div>

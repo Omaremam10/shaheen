@@ -119,7 +119,7 @@
 
 
 
-   <!-- Start Banner Hero -->
+  <!-- Start Banner Hero -->
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
         <!-- Indicators dynamically generated -->
@@ -148,7 +148,7 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">Star Chair Outdoor Dining Set -- Stylish & Durable</h1>
+                            <h1 class="h1">Star Chair Outdoor Dining Set</h1>
                             <h3 class="h2">Stylish & Durable</h3>
                             <p>
                                 This elegant dining set features four Star Chairs and a matching square table, crafted from high-quality rattan-style material. 
@@ -190,6 +190,9 @@
         ];
 
         for (let i = 2; i <= 7; i++) {
+            const product = woodenProducts[i - 2];
+            const mainTitle = product.title.split(" -- ")[0]; // Extract main title before " -- "
+            const subtitle = product.title.split(" -- ")[1]; // Extract subtitle after " -- "
             document.write(`
                 <div class="carousel-item">
                     <div class="container">
@@ -199,9 +202,9 @@
                             </div>
                             <div class="col-lg-6 mb-0 d-flex align-items-center">
                                 <div class="text-align-left">
-                                    <h1 class="h1">${woodenProducts[i - 2].title}</h1>
-                                    <h3 class="h2">High-Quality Wooden Craft</h3>
-                                    <p>${woodenProducts[i - 2].description}</p>
+                                    <h1 class="h1">${mainTitle}</h1>
+                                    <h3 class="h2">${subtitle}</h3>
+                                    <p>${product.description}</p>
                                 </div>
                             </div>
                         </div>
@@ -233,6 +236,9 @@
         ];
 
         for (let i = 1; i <= 4; i++) {
+            const product = electricalProducts[i - 1];
+            const mainTitle = product.title.split(" -- ")[0]; // Extract main title before " -- "
+            const subtitle = product.title.split(" -- ")[1]; // Extract subtitle after " -- "
             document.write(`
                 <div class="carousel-item">
                     <div class="container">
@@ -242,9 +248,9 @@
                             </div>
                             <div class="col-lg-6 mb-0 d-flex align-items-center">
                                 <div class="text-align-left">
-                                    <h1 class="h1">${electricalProducts[i - 1].title}</h1>
-                                    <h3 class="h2">Advanced Electronic Devices</h3>
-                                    <p>${electricalProducts[i - 1].description}</p>
+                                    <h1 class="h1">${mainTitle}</h1>
+                                    <h3 class="h2">${subtitle}</h3>
+                                    <p>${product.description}</p>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +268,6 @@
     </a>
 </div>
 <!-- End Banner Hero -->
-
     <!-- Start Categories of The Month -->
     <section class="container py-5">
         <div class="row text-center pt-3">
